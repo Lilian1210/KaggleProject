@@ -20,7 +20,7 @@ QLQ SE RAPELLE DE LA MANIP POUR VERIFIER SI LE DATA EST CONFORME QUE LE RPOF AVA
 # 1 On va etudier si notre data base est conforme .
 
 
-M'barek Aissam - Maurel Thibaut - EL Schneider  Lillian - Lucaroni tino MAM4
+M'barek Aissam - Maurel Thibaut - Schneider  Lilian - Lucaroni tino MAM4
 Base de donnée choisie : Student Grade Prediction 
 
 1-  Installation des package et importation:
