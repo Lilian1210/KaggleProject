@@ -28,6 +28,7 @@ Base de donnée choisie : Student Grade Prediction
 ```{r}
 student<- read.csv('student-mat.csv')
 
+install.packages("ggpubr")
 #install.packages("ggplot2")
 #install.packages("party")
 #install.packages("rsample")
@@ -85,6 +86,8 @@ Nous avons accès aux informations suivantes :
 
 On étudie l'age  des fille et des garcons dans la population totale .
 
+
+
 ```{r}
 n_student = nrow(student) #nb d'etudiant
 
@@ -93,6 +96,64 @@ age= ggplot(aes(x=age), data=student)+
   ggtitle("Age of students")
 age
 ```
+
+```{r}
+ggplot(data=student, aes( x=age, color='red')) +
+    geom_boxplot(fill='#A4A4A4')+ 
+    xlab(label = "âge") +
+    ylab(label = "count") +
+    theme(axis.text.x = element_text(angle=30, hjust=1, vjust=1))+
+    theme(legend.position="none")+
+    ggtitle("Exemple de boxplots sur les données mpg") 
+```
+```{r}
+t1 <- ggplot(data=student, aes(x=G1)) +
+    geom_boxplot()+ 
+    xlab(label = "Notes") +
+    ylab(label = "Proportion") +
+    theme(axis.text.x = element_text(angle=30, hjust=1, vjust=1))+
+    theme(legend.position="none")+
+    geom_boxplot(outlier.colour="blue", outlier.shape=16,outlier.size=2, notch=FALSE) +
+    ggtitle("Trimestre 1") 
+
+t2 <- ggplot(data=student, aes(x=G2)) +
+    geom_boxplot(fill='#A4A4A4')+ 
+    xlab(label = "Notes") +
+    ylab(label = "Proportion") +
+    theme(axis.text.x = element_text(angle=30, hjust=1, vjust=1))+
+    theme(legend.position="none")+
+    geom_boxplot(outlier.colour="red", outlier.shape=16,outlier.size=2, notch=FALSE) +
+    ggtitle("Trimestre 2") 
+
+t3 <- ggplot(data=student, aes(x=G3)) +
+    geom_boxplot()+ 
+    xlab(label = "Notes") +
+    ylab(label = "Proportion") +
+    theme(axis.text.x = element_text(angle=30, hjust=1, vjust=1))+
+    theme(legend.position="none")+
+    scale_fill_manual(values=c("#3333FF"))+
+    geom_boxplot(outlier.colour="red", outlier.shape=16,outlier.size=2, notch=FALSE) +
+    ggtitle("Trimestre 3") 
+
+library("ggpubr")
+
+figure <- ggarrange(t1, t2, t3,ncol = 3, nrow = 3)
+figure
+```
+
+
+
+```{r}
+sexuni <- student %>% distinct(sex)
+sexuni == c('F', 'M')
+```
+
+```{r}
+sum(is.na(student)==TRUE)==0
+
+```
+
+
 
 ```{r}
 print("l'age moyen des étudiants est : "); mean(student$age)
